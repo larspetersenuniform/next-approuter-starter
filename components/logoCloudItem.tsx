@@ -3,8 +3,8 @@ import {
   ComponentProps,
   UniformText,
 } from "@uniformdev/next-app-router/component";
-import type { AssetParamValue } from "@uniformdev/assets";
-import { flattenValues } from "@uniformdev/assets";
+import type { AssetParamValue } from "@uniformdev/canvas";
+import { flattenValues } from "@uniformdev/canvas";
 
 type LinkParamValue = {
   path: string;
