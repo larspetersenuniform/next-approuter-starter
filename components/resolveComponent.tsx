@@ -4,6 +4,8 @@ import {
 } from "@uniformdev/next-app-router";
 
 import { HeroComponent } from "./hero";
+import { LogoCloudComponent } from "./logoCloud";
+import { LogoCloudItemComponent } from "./logoCloudItem";
 import { Page } from "./page";
 import { ComponentProps } from "@uniformdev/next-app-router/component";
 
@@ -11,6 +13,8 @@ import { ComponentProps } from "@uniformdev/next-app-router/component";
 const componentRegistry: Record<string, ComponentType<any>> = {
   page: Page,
   hero: HeroComponent,
+  logoCloud: LogoCloudComponent,
+  logoCloudItem: LogoCloudItemComponent,
 };
 
 export const resolveComponent: ResolveComponentFunction = ({ component }) => {
