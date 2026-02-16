@@ -10,6 +10,13 @@
   },
   "dependencies": {
     "@uniformdev/next-app-router": "^20.49.4",
+    "@uniformdev/next-app-router-client": "^20.49.4",
+    "@uniformdev/next-app-router-shared": "^20.49.4",
+    "@uniformdev/richtext": "^20.49.4",
+    "@uniformdev/canvas": "^20.49.4",
+    "@uniformdev/assets": "^20.49.4",
+    "@uniformdev/context": "^20.49.4",
+    "@uniformdev/project-map": "^20.49.4",
     "next": "^16.1.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
@@ -19,7 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@uniformdev/cli": "20.49.4-alpha.2",
+    "@uniformdev/cli": "^20.49.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
