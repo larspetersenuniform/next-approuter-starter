@@ -45,6 +45,12 @@ a:hover {
   color: var(--color-accent-hover);
 }
 
+/* Hide scrollbar for card grid webkit browsers */
+[style*="scrollbar-width"]::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
 /* Animated gradient orbs background */
 .animated-bg {
   position: fixed;
