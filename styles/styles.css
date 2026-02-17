@@ -28,22 +28,24 @@ body {
   min-height: 100dvh;
 }
 
-/* :where() gives zero specificity so Tailwind utility classes (text-white, no-underline, etc.) can override */
-:where(a) {
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
-  text-underline-offset: 2px;
-  transition: color 0.2s, text-decoration-color 0.2s;
-}
-:where(a):hover {
-  color: var(--color-accent-hover);
-  text-decoration-color: color-mix(in srgb, var(--color-accent-hover) 60%, transparent);
-}
+/* Inside @layer base so Tailwind @layer utilities (text-white, no-underline) can override */
+@layer base {
+  a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    text-underline-offset: 2px;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  a:hover {
+    color: var(--color-accent-hover);
+    text-decoration-color: color-mix(in srgb, var(--color-accent-hover) 60%, transparent);
+  }
 
-::selection {
-  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-  color: var(--color-accent-hover);
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    color: var(--color-accent-hover);
+  }
 }
 
 /* Hide scrollbar for card grid webkit browsers */
