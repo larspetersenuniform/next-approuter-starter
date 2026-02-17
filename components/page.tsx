@@ -7,7 +7,7 @@ export type PageProps = unknown;
 export type PageSlots = "content";
 
 export const Page = ({ slots }: ComponentProps<PageProps, PageSlots>) => (
-  <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 py-16 sm:py-24">
+  <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 py-16 sm:py-24">
     <UniformSlot slot={slots.content} />
   </div>
 );

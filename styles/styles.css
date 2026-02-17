@@ -1,24 +1,90 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #0a0a0f;
+  --color-surface: #12121a;
+  --color-surface-elevated: #1a1a26;
+  --color-foreground: #e8e8ed;
+  --color-foreground-muted: #8a8a9a;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #60a5fa;
+  --color-border: #1e1e2e;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
+    background-color: var(--color-background) !important;
   }
 
   body {
-    @apply bg-white text-neutral-800 antialiased;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 60%, rgba(244, 114, 182, 0.05), transparent);
+    @apply antialiased font-sans;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     min-height: 100dvh;
   }
 
   a {
-    @apply text-indigo-600 underline decoration-indigo-300 underline-offset-2
-      transition-colors duration-200 hover:text-indigo-800 hover:decoration-indigo-500;
+    @apply text-accent underline decoration-accent/40 underline-offset-2
+      transition-colors duration-200 hover:text-accent-hover hover:decoration-accent-hover/60;
   }
 
   ::selection {
-    @apply bg-indigo-100 text-indigo-900;
+    @apply bg-accent/20 text-accent-hover;
   }
+}
+
+/* Animated gradient orbs background */
+@layer base {
+  .animated-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .animated-bg::before,
+  .animated-bg::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    will-change: transform;
+  }
+
+  .animated-bg::before {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    top: -200px;
+    left: -100px;
+    animation: float-orb-1 20s ease-in-out infinite;
+  }
+
+  .animated-bg::after {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    bottom: -150px;
+    right: -100px;
+    animation: float-orb-2 25s ease-in-out infinite;
+  }
+}
+
+@keyframes float-orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, 40px) scale(1.1); }
+  50% { transform: translate(40px, 80px) scale(0.95); }
+  75% { transform: translate(-30px, 50px) scale(1.05); }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-60px, -30px) scale(1.05); }
+  50% { transform: translate(-30px, -70px) scale(1.1); }
+  75% { transform: translate(40px, -40px) scale(0.95); }
 }
