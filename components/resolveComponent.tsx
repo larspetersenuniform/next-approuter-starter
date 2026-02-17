@@ -7,6 +7,7 @@ import { HeroComponent } from "./hero";
 import { Page } from "./page";
 import { CardComponent } from "./card";
 import { CardGridComponent } from "./cardGrid";
+import { ProductHighlightComponent } from "./productHighlight";
 import { ComponentProps } from "@uniformdev/next-app-router/component";
 
 // Register components here: key = component type, value = React component
@@ -15,6 +16,7 @@ const componentRegistry: Record<string, ComponentType<any>> = {
   hero: HeroComponent,
   card: CardComponent,
   cardGrid: CardGridComponent,
+  productHighlight: ProductHighlightComponent,
 };
 
 export const resolveComponent: ResolveComponentFunction = ({ component }) => {
