@@ -13,66 +13,73 @@
   --color-border: #1e1e2e;
 }
 
-@layer base {
-  html {
-    @apply scroll-smooth;
-    background-color: var(--color-background) !important;
-  }
+/* Override Tailwind v4 preflight: must be outside @layer to win specificity */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+}
 
-  body {
-    @apply antialiased font-sans;
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    min-height: 100dvh;
-  }
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-sans);
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground);
+  min-height: 100dvh;
+}
 
-  a {
-    @apply text-accent underline decoration-accent/40 underline-offset-2
-      transition-colors duration-200 hover:text-accent-hover hover:decoration-accent-hover/60;
-  }
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  text-underline-offset: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+a:hover {
+  color: var(--color-accent-hover);
+  text-decoration-color: color-mix(in srgb, var(--color-accent-hover) 60%, transparent);
+}
 
-  ::selection {
-    @apply bg-accent/20 text-accent-hover;
-  }
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  color: var(--color-accent-hover);
 }
 
 /* Animated gradient orbs background */
-@layer base {
-  .animated-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-  .animated-bg::before,
-  .animated-bg::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.35;
-    will-change: transform;
-  }
+.animated-bg::before,
+.animated-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  will-change: transform;
+}
 
-  .animated-bg::before {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-    top: -200px;
-    left: -100px;
-    animation: float-orb-1 20s ease-in-out infinite;
-  }
+.animated-bg::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation: float-orb-1 20s ease-in-out infinite;
+}
 
-  .animated-bg::after {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-    bottom: -150px;
-    right: -100px;
-    animation: float-orb-2 25s ease-in-out infinite;
-  }
+.animated-bg::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation: float-orb-2 25s ease-in-out infinite;
 }
 
 @keyframes float-orb-1 {

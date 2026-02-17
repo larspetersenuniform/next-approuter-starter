@@ -5,13 +5,14 @@ import {
   UniformText,
 } from "@uniformdev/next-app-router/component";
 import type { AssetParamValue, LinkParamValue } from "@uniformdev/canvas";
-import { flattenValues } from "@uniformdev/canvas";
 
 export const HeroComponent = ({
   parameters: { title, description, eyebrow, image, buttonText, buttonLink },
   component,
 }: ComponentProps<HeroProps>) => {
-  const heroImage = flattenValues(image, { toSingle: true });
+  // Asset params arrive as ComponentParameter<AssetParamValue> where value is AssetParamValueItem[]
+  const imageAssets = image?.value ?? [];
+  const heroImage = imageAssets[0];
   const link = buttonLink?.value;
 
   return (
@@ -84,16 +85,16 @@ export const HeroComponent = ({
             className="absolute -inset-4 rounded-2xl bg-accent/10 blur-2xl"
             aria-hidden="true"
           />
-          {heroImage?.url ? (
+          {heroImage?.fields?.url?.value ? (
             <img
-              src={heroImage.url}
+              src={heroImage.fields.url.value}
               alt={
                 heroImage.fields?.description?.value?.toString() ||
                 heroImage.fields?.title?.value?.toString() ||
                 "Hero image"
               }
-              width={heroImage.width || 600}
-              height={heroImage.height || 500}
+              width={heroImage.fields?.width?.value || 600}
+              height={heroImage.fields?.height?.value || 500}
               className="relative w-full h-auto rounded-2xl border border-border object-cover shadow-2xl shadow-black/40"
             />
           ) : (
@@ -135,7 +136,7 @@ export type HeroProps = {
   title: ComponentParameter<string>;
   description: ComponentParameter<string>;
   eyebrow: ComponentParameter<string>;
-  image: AssetParamValue;
+  image: ComponentParameter<AssetParamValue>;
   buttonText: ComponentParameter<string>;
   buttonLink: ComponentParameter<LinkParamValue>;
 };
