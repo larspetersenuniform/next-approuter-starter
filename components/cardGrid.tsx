@@ -106,15 +106,14 @@ export const CardGridComponent = ({
           msOverflowStyle: "none",
         }}
       >
-        <UniformSlot
-          slot={slots.cards}
-          wrapperComponent={CardWrapper}
-        />
+        <UniformSlot slot={slots.cards}>
+          {({ child, key }) => (
+            <div key={key} className="snap-start">
+              {child}
+            </div>
+          )}
+        </UniformSlot>
       </div>
     </section>
   );
 };
-
-function CardWrapper({ children }: { children: React.ReactNode }) {
-  return <div className="snap-start">{children}</div>;
-}
